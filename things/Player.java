@@ -1,6 +1,10 @@
 package things;
 
+import java.util.Scanner;
+
 import world.World;
+import tiles.Floor;
+import tiles.Tile;
 
 public class Player {
     World w;
@@ -65,5 +69,45 @@ public class Player {
 
         }
         this.avatar = '>';
+    }
+
+    
+// print player options and get input
+    public int getOpt(Scanner s){
+
+        Floor cur = (Floor) w.world[this.x][this.y];
+        System.out.println("[w]: move up\n[s]: move down\n[a]: move left\n[d]: move right\n[i]: inspect\n[f]: inspect ahead\n[q]: quit\n");
+        for(int i = 0; i < cur.getContains().size(); i++){
+            cur.getContains().get(i).getInteraction();
+        }
+        System.out.print("choice: ");
+
+        String choice = s.nextLine();
+        switch(choice.charAt(0)){
+            case 'w':
+            this.moveUp();
+            break;
+            case 'a':
+            this.moveLeft();
+            break;
+            case 's':
+            this.moveDown();
+            break;
+            case 'd':
+            this.moveRight();
+            break;
+            case 'i':
+            w.world[this.x][this.y].inspect();
+            break;
+            case 'q':
+            s.close();
+            return 1;
+            default:
+            System.out.println("no move!");
+            
+        }
+        
+
+        return 0;
     }
 }

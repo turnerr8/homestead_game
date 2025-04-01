@@ -29,6 +29,10 @@ public class Floor extends Tile {
         }
     }
 
+    public Stack<Thing> getContains(){
+        return this.contains;
+    }
+
     public void placeObject(Thing obj){
         contains.push(obj);
     }
@@ -48,8 +52,16 @@ public class Floor extends Tile {
                 -~  @ .., ^-- . ~  `
 
                 ground: %s
-                contains: %s
-                """, this.type, this.contains.toString());
+                """
+                        ,this.type);
+
+                        
+
+        if(!this.contains.empty()){
+            System.out.printf("contains: %s\n", this.contains.peek().getInfo());
+        }
+        
+               
     }
     
 }

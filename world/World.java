@@ -30,7 +30,7 @@ public class World {
                 world[x][y]= new Floor(x, y);
                 boolean treeProb = (rand.nextInt(5)== 0);
                 if(treeProb){
-                    placeObject(new Tree(x, y), x, y);
+                    placeObject(new Tree(x, y, this), x, y);
                 }
 
                 /*int r = rand.nextInt(2);
