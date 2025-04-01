@@ -4,6 +4,7 @@ import java.util.Random;
 
 import things.Player;
 import things.Thing;
+import things.Tree;
 import tiles.Floor;
 import tiles.Tile;
 import tiles.Wall;
@@ -26,7 +27,13 @@ public class World {
         world = new Tile[worldSize][worldSize];
         for(int x = 0; x < worldSize; x++){
             for(int y =0; y<worldSize; y++){
-                int r = rand.nextInt(2);
+                world[x][y]= new Floor(x, y);
+                boolean treeProb = (rand.nextInt(5)== 0);
+                if(treeProb){
+                    placeObject(new Tree(x, y), x, y);
+                }
+
+                /*int r = rand.nextInt(2);
                 switch(r){
                     case 0:
                         world[x][y]= new Floor(x, y);
@@ -36,7 +43,7 @@ public class World {
                         break;
                     default:
                         System.out.println("We shouldnt be here");
-                }
+                 }*/
             }
         }
         world[worldSize/2][worldSize/2] = new Floor(worldSize/2, worldSize/2);
